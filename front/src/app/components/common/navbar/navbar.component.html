@@ -10,6 +10,39 @@
         <li class="nav-item">
           <a class="nav-link active text-white" aria-current="page" routerLink="/">Početna</a>
         </li>
+
+        <li class="nav-item" *ngIf="isUserLoggedIn">
+          <a class="nav-link active text-white" aria-current="page" routerLink="/centers">Lista centara</a>
+        </li>
+
+        <li class="nav-item" *ngIf="isUserLoggedIn">
+          <a class="nav-link active text-white" aria-current="page" routerLink="/visiting-history">Istorija poseta</a>
+        </li>
+
+        <li class="nav-item" *ngIf="isUserLoggedIn">
+          <a class="nav-link active text-white" aria-current="page" routerLink="/examinations">Zakazane posete</a>
+        </li>
+
+        <li class="nav-item" *ngIf="isUserLoggedIn">
+          <a class="nav-link active text-white" aria-current="page" routerLink="/qr-list">QR zakazanih termina</a>
+        </li>
+
+        <li class="nav-item" *ngIf="isUserLoggedIn">
+          <a class="nav-link active text-white" aria-current="page" routerLink="/questionary">Upitnik</a>
+        </li>
+
+        <li class="nav-item" *ngIf="isUserLoggedIn">
+          <a class="nav-link active text-white" aria-current="page" routerLink="/complaints">Zalbe</a>
+        </li>
+
+        <li class="nav-item" *ngIf="isUserLoggedIn">
+          <a class="nav-link active text-white" aria-current="page" routerLink="/profile">Profil</a>
+        </li>
+
+        <li class="nav-item" *ngIf="isUserLoggedIn">
+          <a class="nav-link active text-white" aria-current="page" routerLink="/questionary">Upitnik</a>
+        </li>
+
       </ul>
 
       <div class="d-flex" style="column-gap: 20px;" *ngIf="!isUserLoggedIn">
