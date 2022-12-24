@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CenterDetailsComponent } from './components/center-details/center-details.component';
+import { CentersListComponent } from './components/centers-list/centers-list.component';
 import { NotFoundComponent } from './components/common/not-found/not-found.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -8,6 +10,18 @@ import { VerificationSuccessfulComponent } from './components/verification-succe
 import { AuthGuardGuard } from './guards/auth-guard.guard';
 
 const routes: Routes = [
+  {
+    path: 'centers/:id',
+    component: CenterDetailsComponent,
+    pathMatch: 'full',
+    // canActivate: [AuthGuardGuard]
+  },
+  {
+    path: 'centers',
+    component: CentersListComponent,
+    pathMatch: 'full',
+    // canActivate: [AuthGuardGuard]
+  },
   {
     path: 'register',
     component: RegisterComponent,

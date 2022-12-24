@@ -1,0 +1,36 @@
+<h1 class="text-center my-5">Pregled centra ,,{{center?.name}}"</h1>
+
+
+
+
+
+
+
+
+<h2 class="d-4">Slobodni termini</h2>
+
+<table mat-table [dataSource]="dataSource" matSort (matSortChange)="sort($event)"
+       class="mat-elevation-z8">
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by id">
+      ID
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="start">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by start">
+      Datum i vreme
+    </th>
+    <td mat-cell *matCellDef="let element">
+      <span>{{element.start | date: 'dd.MM.yyyy. HH:mm' }} </span>
+      <button class="btn btn-success" style="margin-left: 50px;" (click)="bookAppointment(element.id)">Zakažite termin</button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

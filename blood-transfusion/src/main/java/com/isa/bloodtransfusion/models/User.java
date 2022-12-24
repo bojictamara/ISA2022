@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -32,4 +34,20 @@ public class User {
     private String password;
     @Column(name = "account_verified")
     private boolean accountVerified;
+    @ManyToMany(
+            mappedBy = "admins"
+    )
+    private List<Center> centers = new ArrayList<>();
+
+    public void addCenter(Center center) {
+        centers.add(center);
+        center.getAdmins().add(this);
+    }
+
+    @OneToMany(
+            mappedBy = "user",
+            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+            orphanRemoval = true
+    )
+    private List<Appointment> appointments = new ArrayList<>();
 }
