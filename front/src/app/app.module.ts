@@ -17,6 +17,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { CenterDetailsComponent } from './components/center-details/center-details.component';
 import { ToastrModule } from 'ngx-toastr';
+import { QuestionnaireComponent } from './components/questionnaire/questionnaire.component';
+import { AuthInterceptor, authInterceptorProviders } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { ToastrModule } from 'ngx-toastr';
     VerificationSuccessfulComponent,
     VerificationFailedComponent,
     CentersListComponent,
-    CenterDetailsComponent
+    CenterDetailsComponent,
+    QuestionnaireComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +48,7 @@ import { ToastrModule } from 'ngx-toastr';
       preventDuplicates: true,
     }),
   ],
-  providers: [],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

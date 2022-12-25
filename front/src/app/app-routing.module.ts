@@ -4,6 +4,7 @@ import { CenterDetailsComponent } from './components/center-details/center-detai
 import { CentersListComponent } from './components/centers-list/centers-list.component';
 import { NotFoundComponent } from './components/common/not-found/not-found.component';
 import { LoginComponent } from './components/login/login.component';
+import { QuestionnaireComponent } from './components/questionnaire/questionnaire.component';
 import { RegisterComponent } from './components/register/register.component';
 import { VerificationFailedComponent } from './components/verification-failed/verification-failed.component';
 import { VerificationSuccessfulComponent } from './components/verification-successful/verification-successful.component';
@@ -11,10 +12,16 @@ import { AuthGuardGuard } from './guards/auth-guard.guard';
 
 const routes: Routes = [
   {
+    path: 'questionnaire',
+    component: QuestionnaireComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuardGuard]
+  },
+  {
     path: 'centers/:id',
     component: CenterDetailsComponent,
     pathMatch: 'full',
-    // canActivate: [AuthGuardGuard]
+    canActivate: [AuthGuardGuard]
   },
   {
     path: 'centers',

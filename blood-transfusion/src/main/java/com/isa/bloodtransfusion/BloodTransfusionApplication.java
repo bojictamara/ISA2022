@@ -33,7 +33,7 @@ public class BloodTransfusionApplication {
 					.name("Ana")
 					.lastName("Markovic")
 					.username("ana")
-					.password("/")
+					.password("$2a$10$v43BWTGh8kF8jj68BpMpnuaf5Cq4rciYoAV.9w0OKxxob.bchlgBK")
 					.accountVerified(true)
 					.build();
 
@@ -42,7 +42,7 @@ public class BloodTransfusionApplication {
 					.name("Petar")
 					.lastName("Petrovic")
 					.username("petar")
-					.password("/")
+					.password("$2a$10$v43BWTGh8kF8jj68BpMpnuaf5Cq4rciYoAV.9w0OKxxob.bchlgBK")
 					.accountVerified(true)
 					.build();
 

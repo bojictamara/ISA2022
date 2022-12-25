@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -71,7 +72,15 @@ export class CenterDetailsComponent implements OnInit {
   }
 
   bookAppointment(id: string) {
-    this.toastr.success("naslov", "telst")
+    this.centerService.reserveAppointment(id).subscribe({
+      next: data => {
+        this.toastr.success("Uspesno sacuvano", "Termin uspesno rezervisan");
+        this.appointments = this.appointments.filter(a => a.id !== +id);
+        this.dataSource.data = this.appointments;
+      }, error: (err: HttpErrorResponse) => {
+        this.toastr.error("Greska", err.error);
+      }
+    })
   }
 }
 

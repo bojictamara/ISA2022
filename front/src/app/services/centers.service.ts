@@ -23,4 +23,8 @@ export class CentersService {
     return this.http.get<AppointmentResponse[]>(environment.backendBaseUrl + "centers/" + id + "/free-appointments");
   }
 
+  reserveAppointment(id: string) {
+    return this.http.put(environment.backendBaseUrl + "centers/reserve-appointment/" + id, {}, {responseType: 'text'});
+  }
+
 }

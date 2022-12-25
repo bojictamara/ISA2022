@@ -20,20 +20,23 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) { }
 
   login(username: string, password: string): Observable<AuthenticatedUser> {
-    return this.http.post<AuthenticatedUser>(environment.backendBaseUrl + 'api/login', {
+    return this.http.post<AuthenticatedUser>(environment.backendBaseUrl + 'login', {
       username,
       password
     }, httpOptions);
   }
 
   register(name: string, lastName:string, username: string, email: string, password: string): Observable<any> {
-    return this.http.post(environment.backendBaseUrl + 'api/register', {
+    return this.http.post(environment.backendBaseUrl + 'register', {
       name,
       lastName,
       username,
       email,
       password
-    }, httpOptions);
+    },
+    {
+      responseType: 'text'
+    });
   }
 
   private getUserFromStorage(): any {

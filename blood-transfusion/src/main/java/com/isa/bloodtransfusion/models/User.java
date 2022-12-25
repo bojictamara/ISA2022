@@ -39,6 +39,16 @@ public class User {
     )
     private List<Center> centers = new ArrayList<>();
 
+    @OneToOne(
+            fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL
+    )
+    @JoinColumn(
+            name = "questionnaire_id",
+            referencedColumnName = "user_id"
+    )
+    private Questionnaire questionnaire;
+
     public void addCenter(Center center) {
         centers.add(center);
         center.getAdmins().add(this);

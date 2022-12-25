@@ -1,0 +1,212 @@
+<div class="container">
+
+  <h1 class="text-center my-4">Upitnik za davanje krvi</h1>
+
+  <form (ngSubmit)="submitForm()">
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" name="answer1" [(ngModel)]="answer1">
+      <label class="form-check-label">
+        1. Да ли сте до сада добровољно давали крв или компоненте крви?
+      </label>
+    </div>
+
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" name="answer2" [(ngModel)]="answer2">
+      <label class="form-check-label">
+        2. Да ли сте икада били одбијени као давалац крви или компоненте крви?
+      </label>
+    </div>
+
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" name="answer3" [(ngModel)]="answer3">
+      <label class="form-check-label">
+        3. Да ли се тренутно осећате здравим, способним и одморним да дате крв или компоненте крви?
+      </label>
+    </div>
+
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" name="answer4" [(ngModel)]="answer4">
+      <label class="form-check-label">
+        4. Да ли сте нешто јели пре доласка на давање крви или компоненте крви?
+      </label>
+    </div>
+
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" name="answer5" [(ngModel)]="answer5">
+      <label class="form-check-label">
+        5. Да ли се бавите опасним занимањем или хобијем?
+      </label>
+    </div>
+
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" name="answer6" [(ngModel)]="answer6">
+      <label class="form-check-label">
+        6. Да ли редовно (свакодневно) узимате било какве лекове?
+      </label>
+    </div>
+
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" name="answer7" [(ngModel)]="answer7">
+      <label class="form-check-label">
+        7. Да ли сте последња 2-3 дана узимали било какве лекове (нпр. Бруфен, Кафетин, Аналгин...)?
+      </label>
+    </div>
+
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" name="answer8" [(ngModel)]="answer8">
+      <label class="form-check-label">
+        8. Да ли стално узимате Аспирин (Cardiopirin)? Да ли сте га узимали у последњих 5 дана?
+      </label>
+    </div>
+
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" name="answer9" [(ngModel)]="answer9">
+      <label class="form-check-label">
+        9. Да ли сте до сада испитивани или лечени у болници или сте тренутно на испитивању или боловању?
+      </label>
+    </div>
+
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" name="answer10" [(ngModel)]="answer10">
+      <label class="form-check-label">
+        10. Да ли сте вадили зуб у протеклих 7 дана?
+      </label>
+    </div>
+
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" name="answer11" [(ngModel)]="answer11">
+      <label class="form-check-label">
+        11. Да ли сте у последњих 7 до 10 дана имали температуру преко 38 C, кијавицу, прехладу или узимали антибиотике?
+      </label>
+    </div>
+
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" name="answer12" [(ngModel)]="answer12">
+      <label class="form-check-label">
+        12. Да ли сте примили било коју вакцину или серум у протеклих 12 месеци?
+      </label>
+    </div>
+
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" name="answer13" [(ngModel)]="answer13">
+      <label class="form-check-label">
+        13. Да ли сте у последњих 6 месеци нагло изгубили на тежини?
+      </label>
+    </div>
+
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" name="answer14" [(ngModel)]="answer14">
+      <label class="form-check-label">
+        14. Да ли сте имали убоде крпеља у протеклих 12 месеци и да ли сте се због тога јављали лекару?
+      </label>
+    </div>
+
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" name="answer15" [(ngModel)]="answer15">
+      <label class="form-check-label">
+        15. Да ли сте икада лечени од епилепсије (падавице), шећерне болести, астме, туберкулозе, инфаркта, можданог удара,
+        малигних обољења, менталних болести или маларије?
+      </label>
+    </div>
+
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" name="answer16" [(ngModel)]="answer16">
+      <label class="form-check-label">
+        16. Да ли болујете од неке друге хроничне болести: срца, плућа, бубрега, јетре, желуца и црева, костију и зглобова,
+        нервног система, крви и крвних судова?
+      </label>
+    </div>
+
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" name="answer17" [(ngModel)]="answer17">
+      <label class="form-check-label">
+        17. Да ли сте икада имали проблема са штитастом жлездом, хипофизом и/или примали хормоне?
+      </label>
+    </div>
+
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" name="answer18" [(ngModel)]="answer18">
+      <label class="form-check-label">
+        18. Да ли имате неке промене на кожи или болујете од алергије?
+      </label>
+    </div>
+
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" name="answer19" [(ngModel)]="answer19">
+      <label class="form-check-label">
+        19. Да ли дуго крварите после повреде или спонтано добијате модрице?
+      </label>
+    </div>
+
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" name="answer20" [(ngModel)]="answer20">
+      <label class="form-check-label">
+        20. Да ли сте у протеклих 6 месеци: <br />
+        а) имали неку операцију или примили крв?<br />
+        б) путовали или живели у иностранству?<br />
+        в) имали акупунктуру, пирсинг или тетоважу?
+      </label>
+    </div>
+
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" name="answer21" [(ngModel)]="answer21">
+      <label class="form-check-label">
+        21. Да ли сте пили алкохол у последњих 6 сати?
+      </label>
+    </div>
+
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" name="answer22" [(ngModel)]="answer22">
+      <label class="form-check-label">
+        22. Облици ризичних стања и понашања:<br />
+        а) Да ли сте боловали или болујете од хепатитиса (жутице) A, B или C?<br />
+        б) Да ли сте били у контакту или живите са особом оболелом од хепатитиса (жутице)?<br />
+        в) Да ли мислите да је постојала могућност да се заразите HIV-ом?<br />
+        г) Да ли сте икада користили било коју врсту дроге?<br />
+        д) Да ли сте икада користили препарате који се званично не издају на рецепт и/или препарате за боди билдинг (стероиде)?<br />
+        ђ) Да ли сте икада за пружање сексуалних услуга узимали новац или дрогу?<br />
+        е) Да ли знате на које све начине сте могли изложити себе ризику од заразних, крвљу преносивих болести?
+      </label>
+    </div>
+
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" name="answer23" [(ngModel)]="answer23">
+      <label class="form-check-label">
+        23. Да ли сте имали сексуалне односе током протеклих 6 месеци без заштите:<br />
+        а) са особом која је HIV позитивна?<br />
+        б) са особом која има или је имала хепатитис (жутицу) B или C?<br />
+        в) са особом која је икада за пружање сексуалних услуга узимала новац или дрогу?<br />
+        г) са особом која је икада користила било коју врсту дроге на било који начин?<br />
+        д) са особом чије Вас је дотадашње сексуално понашање могло довести у ризик добијања сексуално преносиве болести?<br />
+        ђ) да ли сте Ви имали аналне сексуалне односе током протеклих 6 месеци?
+
+      </label>
+    </div>
+
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" name="answer24" [(ngModel)]="answer24">
+      <label class="form-check-label">
+        24. Да ли сте у другом стању?
+      </label>
+    </div>
+
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" name="answer25" [(ngModel)]="answer25">
+      <label class="form-check-label">
+        25. Да ли тренутно имате менструацију?
+      </label>
+    </div>
+
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" name="answer26" [(ngModel)]="answer26">
+      <label class="form-check-label">
+        26. Да ли сте у последњих 6 месеци имали порођај или прекид трудноће?
+      </label>
+    </div>
+
+
+
+    <button type="submit" class="btn btn-primary">Sačuvajte</button>
+  </form>
+
+</div>

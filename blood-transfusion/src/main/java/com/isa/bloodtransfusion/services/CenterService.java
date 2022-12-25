@@ -1,12 +1,15 @@
 package com.isa.bloodtransfusion.services;
 
+import com.isa.bloodtransfusion.exceptions.AppointmentDoesNotExistsException;
 import com.isa.bloodtransfusion.models.Appointment;
 import com.isa.bloodtransfusion.models.Center;
+import com.isa.bloodtransfusion.models.User;
 import com.isa.bloodtransfusion.repositories.AppointmentsRepository;
 import com.isa.bloodtransfusion.repositories.CenterRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -27,5 +30,21 @@ public class CenterService {
 
     public List<Appointment> getCenterFreeAppointmentsByCenter(Long centerId) {
         return appointmentsRepository.findByCenter_IdAndUserIsNull(centerId);
+    }
+
+    public boolean checkAppointmentInPrevious6MonthsExists(User user) {
+        return appointmentsRepository.findByStartAfterAndUser(LocalDateTime.now().minusMonths(6), user).isPresent();
+    }
+
+    public Appointment reserveAppointment(Long appointmentId, User user) throws AppointmentDoesNotExistsException {
+        var appointment = appointmentsRepository.findById(appointmentId);
+        if (appointment.isEmpty()) {
+            throw new AppointmentDoesNotExistsException();
+        }
+
+        var appointmentEntity = appointment.get();
+        appointmentEntity.setUser(user);
+
+        return appointmentsRepository.save(appointmentEntity);
     }
 }

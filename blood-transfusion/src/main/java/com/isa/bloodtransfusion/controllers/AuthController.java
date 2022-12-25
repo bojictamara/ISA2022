@@ -8,6 +8,7 @@ import com.isa.bloodtransfusion.payload.requests.RegistrationRequest;
 import com.isa.bloodtransfusion.services.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -35,7 +36,10 @@ public class AuthController {
         }
     }
 
-    @PostMapping("/register")
+    @PostMapping(
+            value = "/register",
+            produces = {MediaType.TEXT_PLAIN_VALUE}
+    )
     public ResponseEntity<String> registerUser(@Valid @RequestBody RegistrationRequest requestBody,
                                                HttpServletRequest request) {
         try {
