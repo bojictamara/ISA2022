@@ -34,15 +34,21 @@ public class AuthService {
     private final SecureTokenService secureTokenService;
     private final EmailSendingService emailSendingService;
 
-    public LoginResponse authenticateUser(LoginRequest requestBody) {
+    public LoginResponse authenticateUser(LoginRequest requestBody) throws Exception {
         var authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(requestBody.username(),
                         requestBody.password()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        String jwt = jwtUtils.generateJwtToken(authentication);
-
         var userDetails = (UserDetailsImpl) authentication.getPrincipal();
+
+        // TODO - uncomment
+//        var user = userRepository.findById(userDetails.getId());
+//        if (!user.get().isAccountVerified()) {
+//            throw new Exception("Account not verified");
+//        }
+
+        String jwt = jwtUtils.generateJwtToken(authentication);
         String role = userDetails.getAuthorities().stream().findFirst().get().getAuthority();
 
         return new LoginResponse(

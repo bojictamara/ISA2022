@@ -1,13 +1,13 @@
 package com.isa.bloodtransfusion.controllers;
 
+import com.isa.bloodtransfusion.email.AccountVerificationEmailContext;
+import com.isa.bloodtransfusion.email.AppointmentConfirmationEmailContext;
 import com.isa.bloodtransfusion.exceptions.AppointmentDoesNotExistsException;
-import com.isa.bloodtransfusion.models.User;
+import com.isa.bloodtransfusion.models.Appointment;
 import com.isa.bloodtransfusion.payload.responses.AppointmentResponse;
 import com.isa.bloodtransfusion.payload.responses.CenterResponse;
 import com.isa.bloodtransfusion.security.UserDetailsImpl;
-import com.isa.bloodtransfusion.services.CenterService;
-import com.isa.bloodtransfusion.services.QuestionnaireService;
-import com.isa.bloodtransfusion.services.UserService;
+import com.isa.bloodtransfusion.services.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -91,11 +91,13 @@ public class CentersController {
         var authUser = (UserDetailsImpl) context.getAuthentication().getPrincipal();
         var user = userService.findById(authUser.getId());
 
-        var questionnaire = questionnaireService.findByUserId(user.getId());
 
-        if (questionnaire == null) {
-            return ResponseEntity.badRequest().body("Questionnaire not fulfilled");
-        }
+        // TODO - uncomment
+//        var questionnaire = questionnaireService.findByUserId(user.getId());
+//
+//        if (questionnaire == null) {
+//            return ResponseEntity.badRequest().body("Questionnaire not fulfilled");
+//        }
 
         var reservationForbidden = centerService.checkAppointmentInPrevious6MonthsExists(user);
         if (reservationForbidden) {

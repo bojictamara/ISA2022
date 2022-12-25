@@ -35,6 +35,11 @@ dependencies {
 
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:2.7.6'
 
+	implementation 'com.google.zxing:core:3.3.1'
+	implementation 'com.google.zxing:javase:3.3.1'
+
+	compileOnly "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.8.6"
+
 }
 
 tasks.named('test') {

@@ -1,5 +1,6 @@
 package com.isa.bloodtransfusion.services;
 
+import com.isa.bloodtransfusion.email.AppointmentConfirmationEmailContext;
 import com.isa.bloodtransfusion.exceptions.AppointmentDoesNotExistsException;
 import com.isa.bloodtransfusion.models.Appointment;
 import com.isa.bloodtransfusion.models.Center;
@@ -19,6 +20,7 @@ public class CenterService {
 
     private final CenterRepository centerRepository;
     private final AppointmentsRepository appointmentsRepository;
+    private final EmailSendingService emailSendingService;
 
     public List<Center> getAllCenters() {
         return centerRepository.findAll();
@@ -36,7 +38,7 @@ public class CenterService {
         return appointmentsRepository.findByStartAfterAndUser(LocalDateTime.now().minusMonths(6), user).isPresent();
     }
 
-    public Appointment reserveAppointment(Long appointmentId, User user) throws AppointmentDoesNotExistsException {
+    public void reserveAppointment(Long appointmentId, User user) throws AppointmentDoesNotExistsException {
         var appointment = appointmentsRepository.findById(appointmentId);
         if (appointment.isEmpty()) {
             throw new AppointmentDoesNotExistsException();
@@ -45,6 +47,9 @@ public class CenterService {
         var appointmentEntity = appointment.get();
         appointmentEntity.setUser(user);
 
-        return appointmentsRepository.save(appointmentEntity);
+        appointmentsRepository.save(appointmentEntity);
+
+        emailSendingService.sendAppointmentConfirmationEmail(appointmentEntity, user);
     }
+
 }
