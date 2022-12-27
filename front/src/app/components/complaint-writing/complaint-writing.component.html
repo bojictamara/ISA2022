@@ -1,0 +1,37 @@
+<div class="container">
+  <form (submit)="saveComplaint()">
+    <h1 class="text-center my-3">Žalba</h1>
+    <div class="mb-3">
+      <label for="text" class="form-label">Tekst žalbe</label>
+      <textarea type="text" class="form-control" id="text" rows="4" [(ngModel)]="complaintText" name="complaintText"></textarea>
+    </div>
+
+    <div class="row">
+      <div class="col-6 mb-3">
+        <label class="form-label">Centar</label>
+        <select class="form-select" id="center" [(ngModel)]="selectedCenter" name="selectedCenter">
+          <option></option>
+          <option *ngFor="let center of centers" value="{{center.id}}">
+            {{center.name}}
+          </option>
+        </select>
+      </div>
+
+      <div class="col-6 mb-3">
+        <label class="form-label">Zaposleni</label>
+        <select class="form-select" id="medicalWorker" [(ngModel)]="selectedEmployee" name="selectedEmployee">
+          <option></option>
+          <option *ngFor="let employee of employees" value="{{employee.id}}">
+            {{employee.name}} {{employee.lastName}}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Sačuvajte žalbu</button>
+
+    <div class="text-danger p-3">
+      {{errorMessage}}
+    </div>
+  </form>
+</div>

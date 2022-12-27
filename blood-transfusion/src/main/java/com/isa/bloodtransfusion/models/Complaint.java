@@ -9,45 +9,57 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "appointments")
+@Table(name = "complaints")
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-public class Appointment {
+public class Complaint {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "start")
-    LocalDateTime start;
+    @Column(name = "start") private LocalDateTime timestamp;
+
+    @Column(name = "text") private String text;
+
+    @Column(name = "answer") private String answer;
+
+    @ManyToOne(
+            fetch = FetchType.EAGER
+    )
+    @JoinColumn(
+            name = "admin_id",
+            nullable = true
+    )
+    private User admin;
+
+    @ManyToOne(
+            fetch = FetchType.EAGER
+    )
+    @JoinColumn(
+            name = "customer_id",
+            nullable = false
+    )
+    private User customer;
+
+    @ManyToOne(
+            fetch = FetchType.EAGER
+    )
+    @JoinColumn(
+            name = "guilty_id",
+            nullable = true
+    )
+    private User guilty;
 
     @ManyToOne(
             fetch = FetchType.EAGER
     )
     @JoinColumn(
             name = "center_id",
-            nullable = false
+            nullable = true
     )
     Center center;
-
-    @ManyToOne(
-            fetch = FetchType.EAGER
-    )
-    @JoinColumn(
-            name = "medical_worker_id",
-            nullable = true
-    )
-    User medicalWorker;
-
-    @ManyToOne(
-            fetch = FetchType.EAGER
-    )
-    @JoinColumn(
-            name = "user_id",
-            nullable = true
-    )
-    User user;
-
 
 }

@@ -1,6 +1,7 @@
 package com.isa.bloodtransfusion.models;
 
 public enum ERole {
-    REGULAR_USER,
+    CUSTOMER,
+    MEDICAL_WORKER,
     ADMIN
 }

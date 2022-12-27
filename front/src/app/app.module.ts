@@ -19,6 +19,10 @@ import { CenterDetailsComponent } from './components/center-details/center-detai
 import { ToastrModule } from 'ngx-toastr';
 import { QuestionnaireComponent } from './components/questionnaire/questionnaire.component';
 import { AuthInterceptor, authInterceptorProviders } from './interceptors/auth.interceptor';
+import { ComplaintWritingComponent } from './components/complaint-writing/complaint-writing.component';
+import { MyComplaintsComponent } from './components/my-complaints/my-complaints.component';
+import { ComplaintAnswerComponent } from './components/complaint-answer/complaint-answer.component';
+import { ComplaintsAdminComponent } from './components/complaints-admin/complaints-admin.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +35,11 @@ import { AuthInterceptor, authInterceptorProviders } from './interceptors/auth.i
     VerificationFailedComponent,
     CentersListComponent,
     CenterDetailsComponent,
-    QuestionnaireComponent
+    QuestionnaireComponent,
+    ComplaintWritingComponent,
+    MyComplaintsComponent,
+    ComplaintAnswerComponent,
+    ComplaintsAdminComponent
   ],
   imports: [
     BrowserModule,

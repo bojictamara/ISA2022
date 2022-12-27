@@ -1,0 +1,30 @@
+<h1 class="my-3 text-center">Zalbe koje cekaju odgovor</h1>
+
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Tekst</th>
+      <th scope="col">Odgovor</th>
+      <th scope="col">Centar</th>
+      <th scope="col">Zaposleni</th>
+      <th scope="col">Odogorio</th>
+      <th scope="col">Datum podnošenja</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let complaint of complaints">
+      <th scope="row">{{complaint.id}}</th>
+      <td>{{complaint.text}}</td>
+      <td><textarea [(ngModel)]="complaint.answer"></textarea></td>
+      <td>{{complaint.centerName}}</td>
+      <td>{{complaint.guiltyName}}</td>
+      <td>{{complaint.adminName}}</td>
+      <td>{{complaint.timestamp | date: 'dd.MM.yyyy.'}}</td>
+      <td><button class="btn btn-success" (click)="saveAnswer(complaint.id)">Sacuvajte odgovor</button></td>
+    </tr>
+
+  </tbody>
+</table>

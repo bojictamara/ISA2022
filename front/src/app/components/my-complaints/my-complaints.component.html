@@ -1,0 +1,32 @@
+<h1 class="my-3 text-center">Istorija zalbi</h1>
+
+<div>
+  <a routerLink="/complaints/new" class="btn btn-warning">Napišite novu žalbu</a>
+</div>
+
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Tekst</th>
+      <th scope="col">Odgovor</th>
+      <th scope="col">Centar</th>
+      <th scope="col">Zaposleni</th>
+      <th scope="col">Odogorio</th>
+      <th scope="col">Datum podnošenja</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let complaint of complaints">
+      <th scope="row">{{complaint.id}}</th>
+      <td>{{complaint.text}}</td>
+      <td>{{complaint.answer}}</td>
+      <td>{{complaint.centerName}}</td>
+      <td>{{complaint.guiltyName}}</td>
+      <td>{{complaint.adminName}}</td>
+      <td>{{complaint.timestamp | date: 'dd.MM.yyyy.'}}</td>
+    </tr>
+
+  </tbody>
+</table>

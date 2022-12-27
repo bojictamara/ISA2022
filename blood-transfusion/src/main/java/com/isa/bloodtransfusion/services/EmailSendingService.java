@@ -9,8 +9,10 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.isa.bloodtransfusion.email.AccountVerificationEmailContext;
 import com.isa.bloodtransfusion.email.AppointmentConfirmationEmailContext;
+import com.isa.bloodtransfusion.email.ComplaintAnswerEmailContext;
 import com.isa.bloodtransfusion.email.SerializableAppointment;
 import com.isa.bloodtransfusion.models.Appointment;
+import com.isa.bloodtransfusion.models.Complaint;
 import com.isa.bloodtransfusion.models.User;
 import com.isa.bloodtransfusion.repositories.SecureTokenRepository;
 import com.isa.bloodtransfusion.security.SecureTokenService;
@@ -72,6 +74,19 @@ public class EmailSendingService {
             byte[] pngData = pngOutputStream.toByteArray();
 
             emailService.sendEmailWithAttachment(emailContext, new ByteArrayResource(pngData));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void sendComplaintAnswerEmail(Complaint complaint) {
+        var emailContext = new ComplaintAnswerEmailContext();
+        emailContext.init(complaint.getCustomer());
+        emailContext.setAdmin(complaint.getAdmin());
+        emailContext.setAnswer(complaint.getAnswer());
+        try {
+            emailService.sendMail(emailContext);
         } catch (Exception e) {
             e.printStackTrace();
         }

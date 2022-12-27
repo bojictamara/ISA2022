@@ -81,7 +81,7 @@ public class AuthService {
 
         user.setName(requestBody.name());
         user.setLastName(requestBody.lastName());
-        user.setRole(ERole.REGULAR_USER);
+        user.setRole(ERole.CUSTOMER);
         userRepository.save(user);
 
         emailSendingService.sendRegistrationConfirmationEmail(
