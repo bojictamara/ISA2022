@@ -6,15 +6,23 @@ import { NotFoundComponent } from './components/common/not-found/not-found.compo
 import { ComplaintAnswerComponent } from './components/complaint-answer/complaint-answer.component';
 import { ComplaintWritingComponent } from './components/complaint-writing/complaint-writing.component';
 import { ComplaintsAdminComponent } from './components/complaints-admin/complaints-admin.component';
+import { IndexComponent } from './components/index/index.component';
 import { LoginComponent } from './components/login/login.component';
 import { MyComplaintsComponent } from './components/my-complaints/my-complaints.component';
 import { QuestionnaireComponent } from './components/questionnaire/questionnaire.component';
 import { RegisterComponent } from './components/register/register.component';
+import { ReservedAppointmentsComponent } from './components/reserved-appointments/reserved-appointments.component';
 import { VerificationFailedComponent } from './components/verification-failed/verification-failed.component';
 import { VerificationSuccessfulComponent } from './components/verification-successful/verification-successful.component';
 import { AuthGuardGuard } from './guards/auth-guard.guard';
 
 const routes: Routes = [
+  {
+    path: 'my-appointments',
+    component: ReservedAppointmentsComponent,
+    pathMatch: 'full',
+    canActivate: [AuthGuardGuard] // Admin guard
+  },
   {
     path: 'admin-complaints',
     component: ComplaintsAdminComponent,
@@ -80,6 +88,11 @@ const routes: Routes = [
     component: VerificationFailedComponent,
     pathMatch: 'full',
     // canActivate: [AuthGuardGuard]
+  },
+  {
+    path: '',
+    component: IndexComponent,
+    pathMatch: 'full',
   },
   {
     path: '**',

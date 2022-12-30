@@ -60,4 +60,14 @@ public class User {
             orphanRemoval = true
     )
     private List<Appointment> appointments = new ArrayList<>();
+
+    @ManyToMany(
+            mappedBy = "cancellations"
+    )
+    private List<Appointment> cancellations = new ArrayList<>();
+
+    public void addToCancellationHistory(Appointment appointment) {
+        cancellations.add(appointment);
+        appointment.getCancellations().add(this);
+    }
 }

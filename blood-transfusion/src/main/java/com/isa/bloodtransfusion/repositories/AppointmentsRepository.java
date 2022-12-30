@@ -17,4 +17,5 @@ public interface AppointmentsRepository extends JpaRepository<Appointment, Long>
     Optional<Appointment> findByStartAfterAndUser(LocalDateTime dateBefore, User user);
 
     int countByCenterAndUser(Center center, User user);
+    List<Appointment> findByUser(User user);
 }

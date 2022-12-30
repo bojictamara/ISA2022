@@ -15,7 +15,7 @@ export class ComplaintsAdminComponent implements OnInit {
   complaints: ComplaintResponse[] = [];
 
   ngOnInit(): void {
-    this.complaintsService.getMyComplaints().subscribe({
+    this.complaintsService.getAdminComplaints().subscribe({
       next: data => {
         this.complaints = data;
       },

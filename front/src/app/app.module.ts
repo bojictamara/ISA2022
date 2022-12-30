@@ -23,6 +23,8 @@ import { ComplaintWritingComponent } from './components/complaint-writing/compla
 import { MyComplaintsComponent } from './components/my-complaints/my-complaints.component';
 import { ComplaintAnswerComponent } from './components/complaint-answer/complaint-answer.component';
 import { ComplaintsAdminComponent } from './components/complaints-admin/complaints-admin.component';
+import { IndexComponent } from './components/index/index.component';
+import { ReservedAppointmentsComponent } from './components/reserved-appointments/reserved-appointments.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { ComplaintsAdminComponent } from './components/complaints-admin/complain
     ComplaintWritingComponent,
     MyComplaintsComponent,
     ComplaintAnswerComponent,
-    ComplaintsAdminComponent
+    ComplaintsAdminComponent,
+    IndexComponent,
+    ReservedAppointmentsComponent
   ],
   imports: [
     BrowserModule,

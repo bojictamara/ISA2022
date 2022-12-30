@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "appointments")
@@ -48,6 +50,31 @@ public class Appointment {
             nullable = true
     )
     User user;
+
+    @ManyToMany(
+            cascade = {CascadeType.PERSIST, CascadeType.REMOVE}
+    )
+    @JoinTable(
+            name = "cancellation_history",
+            joinColumns = @JoinColumn(
+                    name = "appointment_id",
+                    foreignKey = @ForeignKey(
+                            name = "appointment_cancellations__appointment_id"
+                    )
+            ),
+            inverseJoinColumns = @JoinColumn(
+                    name = "user_id",
+                    foreignKey = @ForeignKey(
+                            name = "appointment_cancellations__user_id"
+                    )
+            )
+    )
+    private List<User> cancellations;
+
+    public void addToCancellationHistory(User user) {
+        cancellations.add(user);
+        user.getCancellations().add(this);
+    }
 
 
 }

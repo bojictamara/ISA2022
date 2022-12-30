@@ -1,6 +1,7 @@
 package com.isa.bloodtransfusion.services;
 
 import com.isa.bloodtransfusion.email.AppointmentConfirmationEmailContext;
+import com.isa.bloodtransfusion.exceptions.AppointmentAlreadyCancelledException;
 import com.isa.bloodtransfusion.exceptions.AppointmentDoesNotExistsException;
 import com.isa.bloodtransfusion.models.Appointment;
 import com.isa.bloodtransfusion.models.Center;
@@ -38,13 +39,20 @@ public class CenterService {
         return appointmentsRepository.findByStartAfterAndUser(LocalDateTime.now().minusMonths(6), user).isPresent();
     }
 
-    public void reserveAppointment(Long appointmentId, User user) throws AppointmentDoesNotExistsException {
+    public void reserveAppointment(Long appointmentId, User user) throws AppointmentDoesNotExistsException, AppointmentAlreadyCancelledException {
         var appointment = appointmentsRepository.findById(appointmentId);
         if (appointment.isEmpty()) {
             throw new AppointmentDoesNotExistsException();
         }
 
         var appointmentEntity = appointment.get();
+
+        for (var u : appointmentEntity.getCancellations()) {
+            if (user.equals(u)) {
+                throw new AppointmentAlreadyCancelledException();
+            }
+        }
+
         appointmentEntity.setUser(user);
 
         appointmentsRepository.save(appointmentEntity);

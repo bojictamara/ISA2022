@@ -2,6 +2,7 @@ package com.isa.bloodtransfusion.controllers;
 
 import com.isa.bloodtransfusion.email.AccountVerificationEmailContext;
 import com.isa.bloodtransfusion.email.AppointmentConfirmationEmailContext;
+import com.isa.bloodtransfusion.exceptions.AppointmentAlreadyCancelledException;
 import com.isa.bloodtransfusion.exceptions.AppointmentDoesNotExistsException;
 import com.isa.bloodtransfusion.models.Appointment;
 import com.isa.bloodtransfusion.payload.responses.AppointmentResponse;
@@ -108,6 +109,8 @@ public class CentersController {
             centerService.reserveAppointment(appointmentId, user);
         } catch (AppointmentDoesNotExistsException e) {
             return ResponseEntity.badRequest().body("Appointment not found");
+        } catch (AppointmentAlreadyCancelledException e) {
+            return ResponseEntity.badRequest().body("Ne mozete da rezervisete termin nakon sto ste ga otkazali");
         }
 
         return ResponseEntity.ok("OK");
