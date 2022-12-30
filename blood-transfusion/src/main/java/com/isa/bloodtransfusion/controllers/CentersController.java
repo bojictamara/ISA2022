@@ -1,14 +1,13 @@
 package com.isa.bloodtransfusion.controllers;
 
-import com.isa.bloodtransfusion.email.AccountVerificationEmailContext;
-import com.isa.bloodtransfusion.email.AppointmentConfirmationEmailContext;
 import com.isa.bloodtransfusion.exceptions.AppointmentAlreadyCancelledException;
 import com.isa.bloodtransfusion.exceptions.AppointmentDoesNotExistsException;
-import com.isa.bloodtransfusion.models.Appointment;
 import com.isa.bloodtransfusion.payload.responses.AppointmentResponse;
 import com.isa.bloodtransfusion.payload.responses.CenterResponse;
 import com.isa.bloodtransfusion.security.UserDetailsImpl;
-import com.isa.bloodtransfusion.services.*;
+import com.isa.bloodtransfusion.services.CenterService;
+import com.isa.bloodtransfusion.services.QuestionnaireService;
+import com.isa.bloodtransfusion.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

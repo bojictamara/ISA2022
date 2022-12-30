@@ -14,6 +14,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { ReservedAppointmentsComponent } from './components/reserved-appointments/reserved-appointments.component';
 import { VerificationFailedComponent } from './components/verification-failed/verification-failed.component';
 import { VerificationSuccessfulComponent } from './components/verification-successful/verification-successful.component';
+import { AdminGuard } from './guards/admin.guard';
 import { AuthGuardGuard } from './guards/auth-guard.guard';
 
 const routes: Routes = [
@@ -21,19 +22,19 @@ const routes: Routes = [
     path: 'my-appointments',
     component: ReservedAppointmentsComponent,
     pathMatch: 'full',
-    canActivate: [AuthGuardGuard] // Admin guard
+    canActivate: [AuthGuardGuard]
   },
   {
     path: 'admin-complaints',
     component: ComplaintsAdminComponent,
     pathMatch: 'full',
-    canActivate: [AuthGuardGuard] // Admin guard
+    canActivate: [AuthGuardGuard, AdminGuard] // Admin guard
   },
   {
     path: 'not-answered-complaints',
     component: ComplaintAnswerComponent,
     pathMatch: 'full',
-    canActivate: [AuthGuardGuard] // Admin guard
+    canActivate: [AuthGuardGuard, AdminGuard] // Admin guard
   },
   {
     path: 'my-complaints',
@@ -63,31 +64,26 @@ const routes: Routes = [
     path: 'centers',
     component: CentersListComponent,
     pathMatch: 'full',
-    // canActivate: [AuthGuardGuard]
   },
   {
     path: 'register',
     component: RegisterComponent,
     pathMatch: 'full',
-    // canActivate: [AuthGuardGuard]
   },
   {
     path: 'login',
     component: LoginComponent,
     pathMatch: 'full',
-    // canActivate: [AuthGuardGuard]
   },
   {
     path: 'verification-successful',
     component: VerificationSuccessfulComponent,
     pathMatch: 'full',
-    // canActivate: [AuthGuardGuard]
   },
   {
     path: 'verification-failed',
     component: VerificationFailedComponent,
     pathMatch: 'full',
-    // canActivate: [AuthGuardGuard]
   },
   {
     path: '',

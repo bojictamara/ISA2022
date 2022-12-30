@@ -1,9 +1,6 @@
 package com.isa.bloodtransfusion;
 
-import com.isa.bloodtransfusion.models.Address;
-import com.isa.bloodtransfusion.models.Appointment;
-import com.isa.bloodtransfusion.models.Center;
-import com.isa.bloodtransfusion.models.User;
+import com.isa.bloodtransfusion.models.*;
 import com.isa.bloodtransfusion.repositories.AddressRepository;
 import com.isa.bloodtransfusion.repositories.AppointmentsRepository;
 import com.isa.bloodtransfusion.repositories.CenterRepository;
@@ -12,6 +9,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDateTime;
 
@@ -26,14 +24,16 @@ public class BloodTransfusionApplication {
 	public CommandLineRunner preloadData(CenterRepository centerRepository,
 										 UserRepository userRepository,
 										 AppointmentsRepository appointmentsRepository,
-										 AddressRepository addressRepository) {
+										 AddressRepository addressRepository,
+										 PasswordEncoder passwordEncoder) {
 		return (args) -> {
 			var user1 = User.builder().id(1L)
 					.email("ana@gmail.com")
 					.name("Ana")
 					.lastName("Markovic")
 					.username("ana")
-					.password("$2a$10$v43BWTGh8kF8jj68BpMpnuaf5Cq4rciYoAV.9w0OKxxob.bchlgBK")
+					.password(passwordEncoder.encode("test123"))
+					.role(ERole.MEDICAL_WORKER)
 					.accountVerified(true)
 					.build();
 
@@ -42,7 +42,8 @@ public class BloodTransfusionApplication {
 					.name("Petar")
 					.lastName("Petrovic")
 					.username("petar")
-					.password("$2a$10$v43BWTGh8kF8jj68BpMpnuaf5Cq4rciYoAV.9w0OKxxob.bchlgBK")
+					.password(passwordEncoder.encode("test123"))
+					.role(ERole.ADMIN)
 					.accountVerified(true)
 					.build();
 

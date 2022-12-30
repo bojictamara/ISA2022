@@ -11,7 +11,8 @@ export class AdminGuard implements CanActivate {
   canActivate(
       next: ActivatedRouteSnapshot,
       state: RouterStateSnapshot): boolean {
-        let isLoggedIn = this.authService.getUserObservable().value !== null;
+        var loggedInUser = this.authService.getUserObservable().value;
+        let isLoggedIn = loggedInUser !== null && loggedInUser.role === "ADMIN";
         if (isLoggedIn){
             return true
         } else {

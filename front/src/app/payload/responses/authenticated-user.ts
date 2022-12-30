@@ -4,4 +4,5 @@ export default interface AuthenticatedUser {
   lastName: string;
   email: string;
   token: string;
+  role: string;
 }
