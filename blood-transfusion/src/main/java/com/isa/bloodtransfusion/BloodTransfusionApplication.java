@@ -34,6 +34,7 @@ public class BloodTransfusionApplication {
 					.username("ana")
 					.password(passwordEncoder.encode("test123"))
 					.role(ERole.MEDICAL_WORKER)
+					.gender(Gender.F)
 					.accountVerified(true)
 					.build();
 
@@ -44,6 +45,7 @@ public class BloodTransfusionApplication {
 					.username("petar")
 					.password(passwordEncoder.encode("test123"))
 					.role(ERole.ADMIN)
+					.gender(Gender.M)
 					.accountVerified(true)
 					.build();
 

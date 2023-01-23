@@ -62,6 +62,76 @@
         </div>
 
         <div class="form-group">
+          <label for="jmbg">JMBG</label>
+          <input type="text" class="form-control" name="jmbg" [(ngModel)]="form.jmbg" required minlength="13"
+            maxlength="20" #jmbg="ngModel" />
+          <div class="alert-danger" *ngIf="jmbg.errors && f.submitted">
+            <div *ngIf="jmbg.errors['required']">JMBG je obavezan</div>
+            <div *ngIf="jmbg.errors['minlength']">
+              JMBG mora da sadrzi 13 karaktera
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="prebivaliste">Prebivaliste</label>
+          <input type="text" class="form-control" name="prebivaliste" [(ngModel)]="form.prebivaliste" required
+             #prebivaliste="ngModel" />
+          <div class="alert-danger" *ngIf="prebivaliste.errors && f.submitted">
+            <div *ngIf="prebivaliste.errors['required']">Unos prebivalista je obavezan</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="grad">Grad</label>
+          <input type="text" class="form-control" name="grad" [(ngModel)]="form.grad" required
+             #grad="ngModel" />
+          <div class="alert-danger" *ngIf="grad.errors && f.submitted">
+            <div *ngIf="grad.errors['required']">Unos grada je obavezan</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="drzava">Drzava</label>
+          <input type="text" class="form-control" name="drzava" [(ngModel)]="form.drzava" required
+             #drzava="ngModel" />
+          <div class="alert-danger" *ngIf="drzava.errors && f.submitted">
+            <div *ngIf="drzava.errors['required']">Unos drzave je obavezan</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="brojTelefona">Broj telefona</label>
+          <input type="text" class="form-control" name="brojTelefona" [(ngModel)]="form.brojTelefona" required
+             #brojTelefona="ngModel" />
+          <div class="alert-danger" *ngIf="brojTelefona.errors && f.submitted">
+            <div *ngIf="brojTelefona.errors['required']">Unos broja telefona je obavezan</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="pol">Pol</label>
+          <select class="form-select" name="pol" [(ngModel)]="form.pol" required>
+            <option value="M">Muski</option>
+            <option value="F">Zenski</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="zanimanje">Zanimanje</label>
+          <input type="text" class="form-control" name="zanimanje" [(ngModel)]="form.zanimanje" required
+             #zanimanje="ngModel" />
+          <div class="alert-danger" *ngIf="zanimanje.errors && f.submitted">
+            <div *ngIf="zanimanje.errors['required']">Unos zanimanja je obavezan</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="info">Informacije o preduzecu, fakultetu, skoli</label>
+          <input type="text" class="form-control" name="info" [(ngModel)]="form.info" />
+        </div>
+
+        <div class="form-group">
           <label for="password">Password</label>
           <input type="password" class="form-control" name="password" [(ngModel)]="form.password" required minlength="6"
             #password="ngModel" />
@@ -72,6 +142,19 @@
             </div>
           </div>
         </div>
+
+        <div class="form-group">
+          <label for="repeatedPassword">Repeat password</label>
+          <input type="password" class="form-control" name="repeatedPassword" [(ngModel)]="form.repeatedPassword" required minlength="6"
+            #repeatedPassword="ngModel" />
+          <div class="alert-danger" *ngIf="repeatedPassword.errors && f.submitted">
+            <div *ngIf="repeatedPassword.errors['required']">Password is required</div>
+            <div *ngIf="repeatedPassword.errors['minlength']">
+              Password must be at least 6 characters
+            </div>
+          </div>
+        </div>
+
         <div class="form-group mt-3">
           <button class="btn btn-primary btn-block">Register</button>
         </div>

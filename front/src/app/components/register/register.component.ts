@@ -12,6 +12,7 @@ export class RegisterComponent implements OnInit {
     name: null,
     lastName: null,
     username: null,
+    jmbg: null,
     email: null,
     password: null
   };
@@ -26,9 +27,14 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(): void {
-    const { name, lastName, username, email, password } = this.form;
+    const { name, lastName, username, email, password, repeatedPassword, jmbg, prebivaliste, grad, drzava, brojTelefona, pol, zanimanje, info } = this.form;
 
-    this.authService.register(name, lastName, username, email, password).subscribe({
+    if (password !== repeatedPassword) {
+      alert("Lozinke se ne poklapaju!")
+      return;
+    }
+
+    this.authService.register(name, lastName, username, email, password, jmbg, prebivaliste, grad, drzava, brojTelefona, pol, zanimanje, info).subscribe({
       next: data => {
         this.isSuccessful = true;
         this.isSignUpFailed = false;

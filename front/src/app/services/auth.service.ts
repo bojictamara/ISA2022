@@ -26,13 +26,22 @@ export class AuthService {
     }, httpOptions);
   }
 
-  register(name: string, lastName:string, username: string, email: string, password: string): Observable<any> {
+  register(name: string, lastName:string, username: string, email: string, password: string,
+    jmbg:string, prebivaliste:string, grad:string, drzava:string, brojTelefona:string, pol:string, zanimanje:string, info:string): Observable<any> {
     return this.http.post(environment.backendBaseUrl + 'register', {
       name,
       lastName,
       username,
       email,
-      password
+      password,
+      jmbg,
+      address: prebivaliste,
+      city: grad,
+      state: drzava,
+      phone: brojTelefona,
+      gender: pol,
+      profession: zanimanje,
+      professionInfo: info
     },
     {
       responseType: 'text'

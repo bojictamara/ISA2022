@@ -42,11 +42,10 @@ public class AuthService {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         var userDetails = (UserDetailsImpl) authentication.getPrincipal();
 
-        // TODO - uncomment
-//        var user = userRepository.findById(userDetails.getId());
-//        if (!user.get().isAccountVerified()) {
-//            throw new Exception("Account not verified");
-//        }
+        var user = userRepository.findById(userDetails.getId());
+        if (!user.get().isAccountVerified()) {
+            throw new Exception("Account not verified");
+        }
 
         String jwt = jwtUtils.generateJwtToken(authentication);
         String role = userDetails.getAuthorities().stream().findFirst().get().getAuthority();
@@ -77,10 +76,18 @@ public class AuthService {
         var user = User.builder()
                 .username(requestBody.username())
                 .email(requestBody.email())
-                .password(encoder.encode(requestBody.password())).build();
+                .password(encoder.encode(requestBody.password()))
+                .build();
 
         user.setName(requestBody.name());
         user.setLastName(requestBody.lastName());
+        user.setJmbg(requestBody.jmbg());
+        user.setAddress(requestBody.address());
+        user.setCity(requestBody.city());
+        user.setState(requestBody.state());
+        user.setPhone(requestBody.phone());
+        user.setProffesion(requestBody.profession());
+        user.setProfessionInfo(requestBody.professionInfo());
         user.setRole(ERole.CUSTOMER);
         userRepository.save(user);
 

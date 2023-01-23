@@ -32,15 +32,16 @@
         </li>
 
         <li class="nav-item" *ngIf="isUserLoggedIn">
-          <a class="nav-link active text-white" aria-current="page" routerLink="/my-complaints">Zalbe</a>
+          <a class="nav-link active text-white" aria-current="page" routerLink="/my-complaints" *ngIf="!isUserAdmin">Zalbe</a>
+          <a class="nav-link active text-white" aria-current="page" routerLink="/admin-complaints" *ngIf="isUserAdmin">Istorija zalbi</a>
+        </li>
+
+        <li class="nav-item" *ngIf="isUserAdmin">
+          <a class="nav-link active text-white" aria-current="page" routerLink="/not-answered-complaints">Zalbe na cekanju</a>
         </li>
 
         <li class="nav-item" *ngIf="isUserLoggedIn">
           <a class="nav-link active text-white" aria-current="page" routerLink="/profile">Profil</a>
-        </li>
-
-        <li class="nav-item" *ngIf="isUserLoggedIn">
-          <a class="nav-link active text-white" aria-current="page" routerLink="/questionary">Upitnik</a>
         </li>
 
       </ul>

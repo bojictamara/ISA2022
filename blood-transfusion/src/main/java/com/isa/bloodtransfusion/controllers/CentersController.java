@@ -92,12 +92,11 @@ public class CentersController {
         var user = userService.findById(authUser.getId());
 
 
-        // TODO - uncomment
-//        var questionnaire = questionnaireService.findByUserId(user.getId());
-//
-//        if (questionnaire == null) {
-//            return ResponseEntity.badRequest().body("Questionnaire not fulfilled");
-//        }
+        var questionnaire = questionnaireService.findByUserId(user.getId());
+
+        if (questionnaire == null) {
+            return ResponseEntity.badRequest().body("Questionnaire not fulfilled");
+        }
 
         var reservationForbidden = centerService.checkAppointmentInPrevious6MonthsExists(user);
         if (reservationForbidden) {

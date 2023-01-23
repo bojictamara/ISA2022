@@ -6,6 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +37,31 @@ public class User {
     private String password;
     @Column(name = "account_verified")
     private boolean accountVerified;
+
+    @Column(name = "jmbg")
+    private String jmbg;
+
+    @Column(name = "address")
+    private String address;
+
+    @Column(name = "city")
+    private String city;
+
+    @Column(name = "state")
+    private String state;
+
+    @Column(name = "phone")
+    private String phone;
+
+    @Column(name = "gender")
+    private Gender gender;
+
+    @Column(name = "proffesion")
+    private String proffesion;
+
+    @Column(name = "proffesion_info")
+    private String professionInfo;
+
     @ManyToMany(
             mappedBy = "admins"
     )
