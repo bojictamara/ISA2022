@@ -1,5 +1,6 @@
 package com.isa.bloodtransfusion.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -87,6 +88,7 @@ public class User {
             cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
             orphanRemoval = true
     )
+    @JsonIgnore
     private List<Appointment> appointments = new ArrayList<>();
 
     @ManyToMany(

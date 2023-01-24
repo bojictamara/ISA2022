@@ -4,6 +4,7 @@ import com.isa.bloodtransfusion.exceptions.CenterDoesNotExistException;
 import com.isa.bloodtransfusion.exceptions.CenterNotVisitedException;
 import com.isa.bloodtransfusion.exceptions.ComplaintNotFoundException;
 import com.isa.bloodtransfusion.exceptions.UserDoesNotExistException;
+import com.isa.bloodtransfusion.models.ERole;
 import com.isa.bloodtransfusion.payload.requests.ComplaintRequest;
 import com.isa.bloodtransfusion.payload.requests.SaveAnswerRequest;
 import com.isa.bloodtransfusion.payload.responses.ComplaintResponse;
@@ -11,8 +12,10 @@ import com.isa.bloodtransfusion.security.UserDetailsImpl;
 import com.isa.bloodtransfusion.services.ComplaintService;
 import com.isa.bloodtransfusion.services.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -51,6 +54,14 @@ public class ComplaintController {
 
     @GetMapping(value = "/not-answered-complaints")
     public ResponseEntity<List<ComplaintResponse>> getNotAnsweredComplaints() {
+        SecurityContext context = SecurityContextHolder.getContext();
+        var authUser = (UserDetailsImpl) context.getAuthentication().getPrincipal();
+        var user = userService.findById(authUser.getId());
+
+        if (!user.getRole().equals(ERole.ADMIN)) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
+
         return ResponseEntity.ok(complaintService.findNotAnsweredComplaints().stream()
                 .map(complaint -> new ComplaintResponse(complaint.getId(),
                         complaint.getTimestamp(),
@@ -69,6 +80,10 @@ public class ComplaintController {
         SecurityContext context = SecurityContextHolder.getContext();
         var authUser = (UserDetailsImpl) context.getAuthentication().getPrincipal();
         var user = userService.findById(authUser.getId());
+
+        if (!user.getRole().equals(ERole.ADMIN)) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
 
         return ResponseEntity.ok(complaintService.findComplaintsHistoryForAdmin(user).stream()
                 .map(complaint -> new ComplaintResponse(complaint.getId(),

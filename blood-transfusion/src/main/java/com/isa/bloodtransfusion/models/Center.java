@@ -1,5 +1,6 @@
 package com.isa.bloodtransfusion.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -35,7 +36,7 @@ public class Center {
     private String description;
     @Column(name = "average_rate")
     private double averageRate;
-
+    @JsonIgnore
     @OneToMany(
             mappedBy = "center",
             cascade = {CascadeType.PERSIST, CascadeType.REMOVE},

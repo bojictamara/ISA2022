@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 @SpringBootApplication
 public class BloodTransfusionApplication {
@@ -36,6 +37,14 @@ public class BloodTransfusionApplication {
 					.role(ERole.MEDICAL_WORKER)
 					.gender(Gender.F)
 					.accountVerified(true)
+					.appointments(new ArrayList<>())
+					.centers(new ArrayList<>())
+					.phone("123-324")
+					.cancellations(new ArrayList<>())
+					.jmbg("9090909090909")
+					.proffesion("test1")
+					.state("SRB")
+					.city("NS")
 					.build();
 
 			var user2 = User.builder().id(2L)
@@ -47,10 +56,38 @@ public class BloodTransfusionApplication {
 					.role(ERole.ADMIN)
 					.gender(Gender.M)
 					.accountVerified(true)
+					.appointments(new ArrayList<>())
+					.centers(new ArrayList<>())
+					.phone("222-324")
+					.cancellations(new ArrayList<>())
+					.jmbg("8080808080808")
+					.proffesion("test3")
+					.state("SRB")
+					.city("NS")
+					.build();
+
+			var user3 = User.builder().id(3L)
+					.email("irina@gmail.com")
+					.name("Irina")
+					.lastName("Jobanovic")
+					.username("irina")
+					.password(passwordEncoder.encode("test123"))
+					.role(ERole.CUSTOMER)
+					.gender(Gender.M)
+					.accountVerified(true)
+					.appointments(new ArrayList<>())
+					.centers(new ArrayList<>())
+					.phone("555-324")
+					.cancellations(new ArrayList<>())
+					.jmbg("5050505050505")
+					.proffesion("test56")
+					.state("SRB")
+					.city("NS")
 					.build();
 
 			userRepository.save(user1);
 			userRepository.save(user2);
+			userRepository.save(user3);
 
 			var address1 = Address.builder()
 					.id(1L)
@@ -68,8 +105,17 @@ public class BloodTransfusionApplication {
 					.state("Srbija")
 					.build();
 
+			var address3 = Address.builder()
+					.id(2L)
+					.streetName("Nisavska")
+					.streetNumber("55")
+					.city("Nis")
+					.state("Srbija")
+					.build();
+
 			addressRepository.save(address1);
 			addressRepository.save(address2);
+			addressRepository.save(address3);
 
 			var center1 = Center.builder()
 					.id(1L)
@@ -87,8 +133,17 @@ public class BloodTransfusionApplication {
 					.averageRate(4.5)
 					.build();
 
+			var center3 = Center.builder()
+					.id(3L)
+					.name("Zdravlje")
+					.address(address3)
+					.description("Description 3")
+					.averageRate(3.7)
+					.build();
+
 			centerRepository.save(center1);
 			centerRepository.save(center2);
+			centerRepository.save(center3);
 
 			var appointment1 = Appointment.builder()
 					.id(1L)
@@ -109,9 +164,42 @@ public class BloodTransfusionApplication {
 					.center(center2)
 					.build();
 
+			var appointment4 = Appointment.builder()
+					.id(4L)
+					.start(LocalDateTime.now().plusDays(10))
+					.center(center3)
+					.build();
+
+			var appointment5 = Appointment.builder()
+					.id(5L)
+					.start(LocalDateTime.now().plusDays(11))
+					.center(center3)
+					.build();
+
+			var appointment6 = Appointment.builder()
+					.id(6L)
+					.start(LocalDateTime.now().plusDays(12))
+					.center(center3)
+					.build();
+
+			var appointment7 = Appointment.builder()
+					.id(7L)
+					.start(LocalDateTime.now().minusMonths(1))
+					.center(center1)
+					.user(user3)
+					.medicalWorker(user1)
+					.build();
+
 			appointmentsRepository.save(appointment1);
 			appointmentsRepository.save(appointment2);
 			appointmentsRepository.save(appointment3);
+			appointmentsRepository.save(appointment4);
+			appointmentsRepository.save(appointment5);
+			appointmentsRepository.save(appointment6);
+			appointmentsRepository.save(appointment7);
+
+			user3.getAppointments().add(appointment7);
+			userRepository.save(user3);
 
 		};
 	}
