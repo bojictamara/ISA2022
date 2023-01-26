@@ -7,7 +7,6 @@ Fakultetski projekat iz predmeta Internet softverske arhitekture 2022/2023
 - SpringBoot
 - Angular
 - PostgreSql
-- Docker
 
 ### Frontend
 
@@ -19,5 +18,3 @@ Fakultetski projekat iz predmeta Internet softverske arhitekture 2022/2023
 ### Backend
 Aplikacija se pokreće tako što se projekat otvori u IntelliJ IDEA IDE-u. Nakon učitavanja, u desnom donjem uglu se klikne na dumge Import Gradle project. Nakon toga, koristi se standarno <strong>Run</strong> dugme za pokretanje aplikacije. Aplikacija je dostupna na <a href="http://localhost:8080">URL-u</a>.
 
-### Docker
-Pozicioniranjem u pocetnom folderu repozitorijuma ISA2022, otvori se terminal. U terminalu se pokreće komanda ** docker compose up -d ** kojom se startuje mejl server. Na putanji <a href="http://localhost:8082">URL-u</a> može da se pristupi mejl sandučetu.
